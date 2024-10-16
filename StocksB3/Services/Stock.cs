@@ -18,7 +18,21 @@ namespace StocksB3.Services
         //Constructor
         public Stock(string code, string name)
         {
-
+            if (string.IsNullOrEmpty(code))
+            {
+                throw new ArgumentNullException("code");
+            }
+            if (code.Length>6)
+            {
+                throw new ArgumentOutOfRangeException("code");
+            }
+            if (string.IsNullOrEmpty(name))
+            {
+                throw new ArgumentNullException("name");
+            }
+            this.B3Code = code;
+            this.B3Name = name;
+         
         }
     }
 

@@ -20,7 +20,7 @@ namespace StocksB3.Tests
         public void create_DateInvalid_Exception(string code, string date, double min, double max)
         {
             StockDailyValue stockDailyValue;
-            Assert.Throws<Exception>(() => { stockDailyValue = new StockDailyValue(code, date, min, max); });
+            Assert.Throws<System.FormatException>(() => { stockDailyValue = new StockDailyValue(code, date, min, max); });
         }
 
         [Theory]
@@ -41,7 +41,7 @@ namespace StocksB3.Tests
             stockDailyValue = new StockDailyValue(code, date, min, max);
 
             Assert.Equal(code, stockDailyValue.B3Code);
-            Assert.Equal(new DateOnly(2024, 08, 01), stockDailyValue.Day);
+            Assert.Equal(date, stockDailyValue.Day.ToString("yyyy-MM-dd"));
             Assert.Equal(min, stockDailyValue.ValueMin);
             Assert.Equal(max, stockDailyValue.ValueMax);
         }

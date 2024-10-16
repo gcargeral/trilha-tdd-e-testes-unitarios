@@ -92,6 +92,7 @@ namespace StocksB3.Tests
         [Theory]
         [InlineData("GCAC24", "2024-06-01", "2024-06-04", 10.22)]
         [InlineData("GCAC24", "2024-06-04", "2024-06-05", 20.44)]
+        [InlineData("GCAC24", "2024-07-04", "2024-07-05", 0)]
         public void get_minValueFromPeriod(string code, string initday, string finalday, double expectedvalue)
         {
             AddDataToTest(code);
@@ -117,7 +118,7 @@ namespace StocksB3.Tests
 
             var result = _stocksData.avgValueFromPeriod(code, init, final);
 
-            Assert.Equal(expectedvalue, result);
+            Assert.Equal(Math.Round(expectedvalue,5), result);
         }
 
 

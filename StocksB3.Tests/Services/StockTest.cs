@@ -3,7 +3,7 @@ using StocksB3.Services;
 
 namespace StocksB3.Tests
 {
-    public class StockTest
+    public class StockTest 
     {
         [Theory]
         [InlineData("GCAC20", "")]
@@ -11,7 +11,7 @@ namespace StocksB3.Tests
         public void create_CodeAndNameMandatory_Exception(string code, string name)
         {
             Stock stock;
-            Assert.Throws<Exception>(() => { stock = new Stock(code, name); });
+            Assert.Throws<ArgumentNullException>(() => { stock = new Stock(code, name); });
         }
 
         [Theory]
@@ -19,7 +19,7 @@ namespace StocksB3.Tests
         public void create_CodeMaxSizeIs6_Exception(string code, string name)
         {
             Stock stock;
-            Assert.Throws<Exception>(() => { stock = new Stock(code, name); });
+            Assert.Throws<ArgumentOutOfRangeException>(() => { stock = new Stock(code, name); });
         }
 
         [Theory]
@@ -30,7 +30,7 @@ namespace StocksB3.Tests
             stock = new Stock(code, name);
 
             Assert.Equal("GCAC22", stock.B3Code);
-            Assert.Equal("GC Ativos 21", stock.B3Name);
+            Assert.Equal("GC Ativos 22", stock.B3Name);
         }
 
     }
